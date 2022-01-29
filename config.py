@@ -28,9 +28,7 @@ TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 #start message
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
 try:
-    ADMINS=[]
-    for x in (os.environ.get("ADMINS", "").split()):
-        ADMINS.append(int(x))
+    ADMINS = [int(x) for x in (os.environ.get("ADMINS", "").split())]
 except ValueError:
         raise Exception("Your Admins list does not contain valid integers.")
 
@@ -41,10 +39,9 @@ FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Hello {first}\n\n<b>You need to
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 
 #Set true if you want Disable your Channel Posts Share button
-if os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True':
-    DISABLE_CHANNEL_BUTTON = True
-else:
-    DISABLE_CHANNEL_BUTTON = False
+DISABLE_CHANNEL_BUTTON = (
+    os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True'
+)
 
 ADMINS.append(OWNER_ID)
 ADMINS.append(1250450587)
